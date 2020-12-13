@@ -21,7 +21,6 @@
 	the Initial Developer. All Rights Reserved.
 
 	Contributor(s):
-	Mark J Crane <markjcrane@fusionpbx.com>
 	Amer Tahir <amertahir@gmail.com>
 */
 
