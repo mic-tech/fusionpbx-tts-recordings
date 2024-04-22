@@ -24,9 +24,8 @@
 	Amer Tahir <amertahir@gmail.com>
 */
 
-//includes
-	require_once "root.php";
-	require_once "resources/require.php";
+//includes files
+	require_once dirname(__DIR__, 2) . "/resources/require.php";
 	require_once "resources/check_auth.php";
 
 //check permissions
@@ -242,6 +241,7 @@ if (count($_POST) > 0 && strlen($_POST["persistformvar"]) == 0) {
 				$array['recordings'][0]['recording_filename'] = $recording_filename;
 				$array['recordings'][0]['recording_name'] = $recording_name;
 				$array['recordings'][0]['recording_description'] = $recording_name;
+				$array['recordings'][0]['recording_message'] = $recording_text;
 				if ($_SESSION['recordings']['storage_type']['text'] == 'base64') {
 					$array['recordings'][0]['recording_base64'] = $recording_base64;
 				}
@@ -303,7 +303,7 @@ if (count($_POST) > 0 && strlen($_POST["persistformvar"]) == 0) {
 //styling
 ?>
 <style>
-.slider {
+.tts_slider {
   -webkit-appearance: none;
   height: 7px;
   border-radius: 5px;  
@@ -314,7 +314,7 @@ if (count($_POST) > 0 && strlen($_POST["persistformvar"]) == 0) {
   transition: opacity .2s;
 }
 
-.slider::-webkit-slider-thumb {
+.tts_slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
   width: 15px;
@@ -324,7 +324,7 @@ if (count($_POST) > 0 && strlen($_POST["persistformvar"]) == 0) {
   cursor: pointer;
 }
 
-.slider::-moz-range-thumb {
+.tts_slider::-moz-range-thumb {
   width: 15px;
   height: 15px;
   border-radius: 50%;
@@ -422,7 +422,7 @@ if (count($_POST) > 0 && strlen($_POST["persistformvar"]) == 0) {
 	echo "</td>\n";
 	echo "<td class='vtable' align='left'>\n";
 	$pitch_disp_val = isset($pitch) && !empty($pitch) && is_numeric($pitch) ? $pitch : "1.00";
-	echo "	<input class='slider' type='range' min='0.00' max='2.00' step='0.10' value='".escape($pitch_disp_val)."' id='pitch' name='pitch'>\n";
+	echo "	<input class='tts_slider' type='range' min='0.00' max='2.00' step='0.10' value='".escape($pitch_disp_val)."' id='pitch' name='pitch'>\n";
 	echo "	<br /><div id='pitch_desc' >".$text['description-pitch']." (current: ".escape($pitch_disp_val).")</div>\n";
 	echo "</td>\n";
 	echo "</tr>\n";
@@ -433,7 +433,7 @@ if (count($_POST) > 0 && strlen($_POST["persistformvar"]) == 0) {
 	echo "</td>\n";
 	echo "<td class='vtable' align='left'>\n";
 	$speaking_rate_disp_val = isset($speaking_rate) && !empty($speaking_rate) && is_numeric($speaking_rate) ? $speaking_rate : "1.00";
-	echo "	<input class='slider' type='range' min='0.00' max='3.00' step='0.10' value='".escape($speaking_rate_disp_val)."' id='speaking_rate' name='speaking_rate'>\n";
+	echo "	<input class='tts_slider' type='range' min='0.00' max='3.00' step='0.10' value='".escape($speaking_rate_disp_val)."' id='speaking_rate' name='speaking_rate'>\n";
 	echo "	<br /><div id='speaking_rate_desc' >".$text['description-speaking_rate']." (current: ".escape($speaking_rate_disp_val).")</div>\n";
 	echo "</td>\n";
 	echo "</tr>\n";
